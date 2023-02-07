@@ -1,23 +1,32 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
-import { Post } from '../post';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
+  form!: FormGroup;
 
-  posts: Post[] = [];
-
-  constructor(private _appService: ApiService) {}
+  constructor(public apiService: ApiService,
+    private router: Router) {}
 
   ngOnInit(): void {
-    this._appService.getAll().subscribe((data: Post[])=>{
-      this.posts = data;
-      console.log(this.posts);
-    })
+    this.form = new FormGroup({
+      title: new FormControl('', [Validators.required]),
+      body: new FormControl('', Validators.required),
+    });
   }
+
+   submit() {
+    console.log(this.form.value);
+    this.apiService.create(this.form.value).subscribe((res: any) => {
+      alert('Post created successfully!');
+    });
+  }
+
 
 }

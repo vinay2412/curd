@@ -1,25 +1,28 @@
 <div class="container">
-  <div >
-    <h2>Angular Curd Application</h2>
-  <a href="#" routerLink="/post/create/" class="btn btn-success">Create New Post</a>
-</div>
+  <h1>Create New Post</h1>
 
-  <table class="table table-bordered">
-    <tr>
-      <th>ID</th>
-      <th>Title</th>
-      <th>Body</th>
-      <th width="200px">Action</th>
-    </tr>
-    <tr *ngFor="let post of posts">
-      <td>{{ post.id }}</td>
-      <td>{{ post.title }}</td>
-      <td>{{ post.body }}</td>
-      <td>
-        <a href="#"  class="btn btn-info">View</a>
-        <a href="#"  class="btn btn-primary">Edit</a>
-        <button type="button"  class="btn btn-danger">Delete</button>
-      </td>
-    </tr>
-  </table>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form-group">
+          <label for="title">Title:</label>
+          <input
+              formControlName="title"
+              id="title"
+              type="text"
+              class="form-control">
+            </div>
+
+      <div class="form-group">
+          <label for="body">Body</label>
+          <textarea
+              formControlName="body"
+              id="body"
+              type="text"
+              class="form-control">
+          </textarea>
+      </div>
+      <div>
+        <button class="btn btn-primary" type="submit" >Submit</button>
+        <a href="#" routerLink="/dashboard" class="btn btn-primary">Live Dashboard</a>
+      </div>
+  </form>
 </div>
