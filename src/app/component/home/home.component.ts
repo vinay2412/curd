@@ -9,6 +9,7 @@ import { ApiService } from '../api.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
+  id!: number;
   form!: FormGroup;
 
   constructor(public apiService: ApiService,
@@ -21,12 +22,10 @@ export class HomeComponent {
     });
   }
 
-   submit() {
-    console.log(this.form.value);
-    this.apiService.create(this.form.value).subscribe((res: any) => {
+   submit(){
+    this.apiService.create(this.form.value).subscribe((res) => {
       alert('Post created successfully!');
+      this.router.navigate(['dashboard']);
     });
   }
-
-
 }

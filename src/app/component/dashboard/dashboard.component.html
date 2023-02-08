@@ -13,9 +13,8 @@
       <td>{{ post.title }}</td>
       <td>{{ post.body }}</td>
       <td>
-        <a href="#" class="btn btn-info">View</a>
-        <a href="#" class="btn btn-primary">Edit</a>
-        <button type="button" class="btn btn-danger">Delete</button>
+        <button type="button" [routerLink]="['/post/', post.id]"  class="button-18">Edit</button>
+        <button type="button" (click)="deletePost(post.id)" class="button-19">Delete</button>
       </td>
     </tr>
   </table>

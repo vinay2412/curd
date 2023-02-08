@@ -1,9 +1,11 @@
 <div class="container">
-  <h1>Create New Post</h1>
+  <h1>Create New Data</h1>
+
+  <a href="dashboard" class="btn btn-primary" >Live Dashboard</a>
 
   <form [formGroup]="form" (ngSubmit)="submit()">
       <div class="form-group">
-          <label for="title">Title:</label>
+          <label for="title">Title</label>
           <input
               formControlName="title"
               id="title"
@@ -20,9 +22,8 @@
               class="form-control">
           </textarea>
       </div>
-      <div>
-        <button class="btn btn-primary" type="submit" >Submit</button>
-        <a href="#" routerLink="/dashboard" class="btn btn-primary">Live Dashboard</a>
-      </div>
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
   </form>
 </div>
+
+

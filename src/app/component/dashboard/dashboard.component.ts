@@ -10,12 +10,19 @@ import { Post } from '../post';
 export class DashboardComponent {
   posts: Post[] = [];
 
-  constructor(private _appService: ApiService) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this._appService.getAll().subscribe((data: Post[])=>{
+    this.apiService.getAll().subscribe((data: Post[])=>{
       this.posts = data;
-      console.log(this.posts);
     })
-}
+  }
+
+   deletePost(id:number){
+    this.apiService.delete(id).subscribe(res => {
+         this.posts = this.posts.filter(item => item.id !== id);
+         alert('Data delete');
+    })
+  }
+
 }
